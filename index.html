@@ -1,43 +1,37 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top">
-    <title>アルクマップ - GAS版</title>
-    <style>
-    .day {
-      color: blue;
-    }
-    .event {
-      margin-bottom: 10px;
-    }
-    .block{
-      display: flex;
-    }
-    </style>
-  </head>
-  <body>
-    <div id="info" class="block">
-      <div id="schedule">
-        <h3>アルクマスケジュール</h3>
-          <!-- GASのgetEvents()を呼び出して、戻り値をもとにHTMLを組み立てる -->
-          <?
-             var events = getEvents();
-             for(var i = 0; i < events.length; i++){
-                 var day = events[i].day;
-                 output.append('<div class="event">');
-                 output.append('<div class="day">' + day + '</div>');
-                 output.append('<div class="title">' + events[i].title + '</div>');
-                 output.append('<div class="place">' + events[i].place + '</div>');
-                 output.append('</div>');
-             }
-          ?>
-      </div>
-      <div id="map" class="block">
-        <!-- GASのgetMap()で作成したGoogle StaticMapを表示する -->
-        <div>
-          <img src="<?= getMap(); ?>" alt="map">
-        </div>
-      </div>
+
+<title>アルクマップ - GAS版</title>
+<style>
+.day {
+  color: blue;
+}
+.event {
+  margin-bottom: 10px;
+}
+.block{
+  display: flex;
+}
+</style>
+<div id="info" class="block">
+  <div id="schedule">
+    <h3>アルクマスケジュール</h3>
+      <!-- GASのgetEvents()を呼び出して、戻り値をもとにHTMLを組み立てる -->
+      <?
+         var events = getEvents();
+         for(var i = 0; i < events.length; i++){
+             var day = events[i].day;
+             output.append('<div class="event">');
+             output.append('<div class="day">' + day + '</div>');
+             output.append('<div class="title">' + events[i].title + '</div>');
+             output.append('<div class="place">' + events[i].place + '</div>');
+             output.append('</div>');
+         }
+      ?>
+  </div>
+  <div id="map" class="block">
+    <!-- GASのgetMap()で作成したGoogle StaticMapを表示する -->
+    <div>
+      <img src="<?= getMap(); ?>" alt="map">
     </div>
-  </body>
-</html>
+  </div>
+</div>
